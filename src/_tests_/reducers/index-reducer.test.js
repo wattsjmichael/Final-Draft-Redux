@@ -13,9 +13,13 @@ describe ("rootReducer", ()=> {
     });
   });
 
-test ('Check that initial state of draftListReducer mathces root reducer', () => {
+test ('Check that initial state of draftListReducer matches root reducer', () => {
  expect(store.getState().fullDraftList).toEqual(draftListReducer(undefined, {type: null}));
 });
+
+test ('Check that initial state of kegFormVisibleReducer matches root reducer', () => {
+  expect(store.getState().kegFormVisibleOnPage).toEqual(kegFormVisibleReducer(undefined, {type: null}));
+ });
 
 
 })
