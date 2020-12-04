@@ -2,6 +2,26 @@ import draftListReducer from '../../reducers/draft-list-reducer';
 
 describe ('draftListReducer', () => {
 
+
+  const currentState = {
+    1: {
+    name: "Boneyard IPA",
+    brand: "Boneyard Brewery",
+    price : "5.50",
+    abv: "6.7",
+    pintsLeft: 127,
+    id: 1
+    },
+    2: {
+      name: "The Abyss",
+      brand: "Deschutes Brewery",
+      price: "12.50",
+      abv: "12.5",
+      pintsLeft: 44,
+      id: 2
+    },
+  }
+
   let action;
   const kegInfo = {
     name: 'Best Day Ever IPA',
@@ -40,6 +60,22 @@ describe ('draftListReducer', () => {
       abv: abv,
       pintsLeft: pintsLeft
       }
-    })
-  })
-});
+    });
+  });
+  
+    test ("should sucessfully delete a keg", () => {
+      action = {
+        type: 'DELETE_KEG',
+        id: 1
+      };
+      expect(draftListReducer(currentState, action)).toEqual({
+        2: {name: "The Abyss",
+        brand: "Deschutes Brewery",
+        price: "12.50",
+        abv: "12.5",
+        pintsLeft: 44,
+        id: 2}
+      });
+    });
+
+  });
