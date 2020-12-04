@@ -10,8 +10,9 @@ class DraftControl extends React.Component {
 
   constructor(props) {
     super(props);
+    console.log(props);
     this.state = {
-      kegFormVisibleOnPage: false,
+      // kegFormVisibleOnPage: false,
       // fullDraftList: [],
       selectedKeg: null,
       editing: false,
@@ -32,14 +33,19 @@ class DraftControl extends React.Component {
   handleClick = () => {
     if (this.state.selectedKeg != null) {
       this.setState({
-        kegFormVisibleOnPage: false,
+        // kegFormVisibleOnPage: false,
         selectedKeg: null,
         editing: false
       });
     } else {
-      this.setState(prevState => ({
-        kegFormVisibleOnPage: !prevState.kegFormVisibleOnPage,
-      }));
+      const { dispatch } = this.props;
+      const action = {
+        type: 'TOGGLE_FORM'
+      }
+      dispatch(action);
+      // this.setState(prevState => ({
+      //   kegFormVisibleOnPage: !prevState.kegFormVisibleOnPage,
+      // }));
     }
   }
 
@@ -130,7 +136,11 @@ class DraftControl extends React.Component {
       pintsLeft: pintsLeft,
     }
     dispatch(action);
-    this.setState({ kegFormVisibleOnPage: false });
+    const action2 = {
+      type: 'TOGGLE_FORM'
+    }
+    dispatch(action2)
+    // this.setState({ kegFormVisibleOnPage: false });
   }
 
   //   const newFullDraftList = this.state.fullDraftList.concat(newKeg);
@@ -153,7 +163,7 @@ class DraftControl extends React.Component {
       buttonText = "Return to the Keg List"
 
     }
-    else if (this.state.kegFormVisibleOnPage) {
+    else if (this.props.kegFormVisibleOnPage) {
       currentlyVisibleState = <NewKegForm onNewKegCreation={this.handleAddNewKegToDraftList} />
       buttonText = "Return to the Keg List";
     } else {
@@ -171,12 +181,14 @@ class DraftControl extends React.Component {
 }
 
 DraftControl.propTypes = {
-  fullDraftList: PropTypes.object
+  fullDraftList: PropTypes.object,
+  kegFormVisibleOnPage: PropTypes.bool
 };
 
 const mapStatetoProps = state => {
   return {
-    fullDraftList: state
+    fullDraftList: state.fullDraftList,
+    form: state.kegFormVisibleOnPage
   }
 }
 
