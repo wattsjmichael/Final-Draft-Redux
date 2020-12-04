@@ -7,7 +7,7 @@ function KegDetail(props){
   return (
     <React.Fragment>
     <hr/>
-    <h2>{keg.name} Made By {keg.brewery}</h2>
+    <h2>{keg.name} Made By {keg.brand}</h2>
     <p>abv {keg.abv}</p>
     <h3>price {keg.price}</h3>
     <p>{keg.pintsLeft} total pints left</p> {/* Make this a percentage */}

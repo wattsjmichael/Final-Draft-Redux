@@ -3,32 +3,34 @@ import NewKegForm from "./NewKegForm";
 import DraftList from "./DraftList";
 import KegDetail from "./KegDetail";
 import EditKegForm from "./EditKegForm";
+import { connect } from 'react-redux';
+import PropTypes from "prop-types";
 
 class DraftControl extends React.Component {
 
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       kegFormVisibleOnPage: false,
-      fullDraftList: [],
+      // fullDraftList: [],
       selectedKeg: null,
       editing: false,
-      
-      
-      
-      
-      
-      
-      
+
+
+
+
+
+
+
     };
     this.handleClick = this.handleClick.bind(this);
     this.handleSellingPint = this.handleSellingPint.bind(this);
-    
-  
+
+
   }
 
   handleClick = () => {
-    if (this.state.selectedKeg != null){
+    if (this.state.selectedKeg != null) {
       this.setState({
         kegFormVisibleOnPage: false,
         selectedKeg: null,
@@ -40,81 +42,126 @@ class DraftControl extends React.Component {
       }));
     }
   }
-  
+
   handleSellingPint = (id) => {
     const clonedArray = [...this.state.fullDraftList]
-    for (let i = 0; i < this.state.fullDraftList.length; i++){
-      if (clonedArray[i].id === id && clonedArray[i].pintsLeft > 0 ){
+    for (let i = 0; i < this.state.fullDraftList.length; i++) {
+      if (clonedArray[i].id === id && clonedArray[i].pintsLeft > 0) {
         clonedArray[i].pintsLeft -= 1
-      } else if (clonedArray[i].pintsLeft <= 0){
+      } else if (clonedArray[i].pintsLeft <= 0) {
         return alert("Change the Keg! Dont forget to delete it!");
+      }
     }
-  } 
-    
+
 
     this.setState({
-          fullDraftList: clonedArray
+      fullDraftList: clonedArray
     });
-}
+  }
 
 
   handleEditingKegInDraftList = (kegToEdit) => {
-    const editedFullDraftList = this.state.fullDraftList
-    .filter(keg => keg.id !== this.state.selectedKeg.id)
-    .concat(kegToEdit);
+    const { dispatch } = this.props;
+    const { id, name, brand, abv, price, pintsLeft } = kegToEdit;
+    const action = {
+      type: 'ADD_KEG',
+      id: id,
+      name: name,
+      brand: brand,
+      abv: abv,
+      price: price,
+      pintsLeft: pintsLeft,
+    }
+    dispatch(action);
     this.setState({
-      fullDraftList: editedFullDraftList,
       editing: false,
-      selectedKeg: null
-    })
+      selectedKeg: null,
+    });
   }
+  //   const editedFullDraftList = this.state.fullDraftList
+  //   .filter(keg => keg.id !== this.state.selectedKeg.id)
+  //   .concat(kegToEdit);
+  //   this.setState({
+  //     fullDraftList: editedFullDraftList,
+  //     editing: false,
+  //     selectedKeg: null
+  //   })
+  // }
 
   handleEditClick = () => {
-    this.setState({editing:true});
+    this.setState({ editing: true });
   }
 
   handleDeletingKeg = (id) => {
-    const newFullDraftList = this.state.fullDraftList.filter(keg => keg.id !== id);
-    this.setState({
-      fullDraftList : newFullDraftList,
-      selectedKeg: null
-    });
+    const { dispatch } = this.props;
+    const action = {
+      type: 'DELETE_KEG',
+      id: id
+    }
+    dispatch(action);
+    this.setState({ selectedKeg: null });
   }
+
+  //   const newFullDraftList = this.state.fullDraftList.filter(keg => keg.id !== id);
+  //   this.setState({
+  //     fullDraftList : newFullDraftList,
+  //     selectedKeg: null
+  //   });
+  // }
 
   handleChangingSelectedKeg = (id) => {
-    const selectedKeg = this.state.fullDraftList.filter(keg => keg.id === id)[0];
-    this.setState({selectedKeg : selectedKeg});
+    const selectedKeg = this.props.fullDraftList[id];
+    this.setState({selectedKeg: selectedKeg});
   }
+  //   const selectedKeg = this.state.fullDraftList.filter(keg => keg.id === id)[0];
+  //   this.setState({ selectedKeg: selectedKeg });
+  // }
 
   handleAddNewKegToDraftList = (newKeg) => {
-    const newFullDraftList = this.state.fullDraftList.concat(newKeg);
-    this.setState({
-      fullDraftList: newFullDraftList,
-      kegFormVisibleOnPage: false});
+    const { dispatch } = this.props;
+    const { id, name, brand, abv, price, pintsLeft } = newKeg;
+    const action = {
+      type: 'ADD_KEG',
+      id: id,
+      name: name,
+      brand: brand,
+      price: price,
+      abv: abv,
+      pintsLeft: pintsLeft,
+    }
+    dispatch(action);
+    this.setState({ kegFormVisibleOnPage: false });
   }
+
+  //   const newFullDraftList = this.state.fullDraftList.concat(newKeg);
+  //   this.setState({
+  //     fullDraftList: newFullDraftList,
+  //     kegFormVisibleOnPage: false});
+  // }
 
   render() {
     let currentlyVisibleState = null;
     let buttonText = null;
-    
-    if (this.state.editing){
-      currentlyVisibleState = <EditKegForm keg = {this.state.selectedKeg} onEditKeg = {this.handleEditingKegInDraftList} />
+
+    if (this.state.editing) {
+      currentlyVisibleState = <EditKegForm keg={this.state.selectedKeg} onEditKeg={this.handleEditingKegInDraftList} />
       buttonText = "Return to the Draft List"
     }
-    else if (this.state.selectedKeg != null){
-      currentlyVisibleState = <KegDetail keg = {this.state.selectedKeg} onClickingDelete = {this.handleDeletingKeg}
-      onClickingEdit = {this.handleEditClick} onSellingPint = {this.handleSellingPint}/>
+    else if (this.state.selectedKeg != null) {
+      currentlyVisibleState = <KegDetail keg={this.state.selectedKeg} onClickingDelete={this.handleDeletingKeg}
+        onClickingEdit={this.handleEditClick} onSellingPint={this.handleSellingPint} />
       buttonText = "Return to the Keg List"
-      
+
     }
-    else if (this.state.kegFormVisibleOnPage){
+    else if (this.state.kegFormVisibleOnPage) {
       currentlyVisibleState = <NewKegForm onNewKegCreation={this.handleAddNewKegToDraftList} />
       buttonText = "Return to the Keg List";
     } else {
-      currentlyVisibleState = <DraftList draftList={this.state.fullDraftList} onKegSelection={this.handleChangingSelectedKeg} />
+      // currentlyVisibleState = <DraftList draftList={this.state.fullDraftList} onKegSelection={this.handleChangingSelectedKeg} />
+      currentlyVisibleState = <DraftList draftList={this.props.fullDraftList} onKegSelection={this.handleChangingSelectedKeg} />
       buttonText = "Add a Keg";
     }
-    return(
+    return (
       <React.Fragment>
         {currentlyVisibleState}
         <button onClick={this.handleClick}>{buttonText}</button>
@@ -122,5 +169,17 @@ class DraftControl extends React.Component {
     );
   }
 }
+
+DraftControl.propTypes = {
+  fullDraftList: PropTypes.object
+};
+
+const mapStatetoProps = state => {
+  return {
+    fullDraftList: state
+  }
+}
+
+DraftControl = connect(mapStatetoProps)(DraftControl);
 
 export default DraftControl;

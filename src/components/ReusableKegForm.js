@@ -11,7 +11,7 @@ function ReusableKegForm(props) {
           placeholder="Beer Name" />
         <input
           type="text"
-          name="brewery"
+          name="brand"
           placeholder="Brewery Name" />
         <input
           type="text"

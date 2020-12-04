@@ -31,8 +31,19 @@ const fullKegList = [
 function DraftList(props){
   return (
     <React.Fragment>
-      
-      {props.draftList.map((keg) =>
+      {Object.values(props.draftList).map((keg) =>
+      <Keg
+      WhenKegClicked = { props.onKegSelection }
+      name={keg.name}
+      brand={keg.brand}
+      price={keg.price}
+      abv={keg.abv}
+      pintsLeft={keg.pintsLeft}
+      id={keg.id}
+      key={keg.id}/>
+      )}
+
+      {/* {props.draftList.map((keg) =>
       <Keg
         whenKegClicked = { props.onKegSelection}
         name={keg.name}
@@ -42,13 +53,13 @@ function DraftList(props){
         pintsLeft={keg.pintsLeft}
         id = {keg.id}
         key={keg.id}/>
-      )}
+      )} */}
     </React.Fragment>
   );
 }
 
 DraftList.propTypes = {
-  draftList: PropTypes.array,
+  draftList: PropTypes.object,
   onKegSelection: PropTypes.func
 };
 
