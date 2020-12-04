@@ -54,6 +54,10 @@ A React Webpage where you can add kegs, sell pints, update kegs, and delete them
 
 2. Create the app by running `npx create-react-app final-draft`. Or Downloading/cloning from github. 
 
+#### Install React
+
+1.  run `npm install redux@4.0.5 react-redux@7.1.3` in your terminal. 
+
 
 
 
