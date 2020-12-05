@@ -58,11 +58,12 @@ describe ('draftListReducer', () => {
       brand: brand,
       price: price,
       abv: abv,
-      pintsLeft: pintsLeft
+      pintsLeft: pintsLeft,
+      id: id
       }
     });
   });
-  
+
     test ("should sucessfully delete a keg", () => {
       action = {
         type: 'DELETE_KEG',
