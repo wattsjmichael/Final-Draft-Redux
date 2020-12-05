@@ -6,7 +6,7 @@ function ReusableKegForm(props) {
     <React.Fragment>
       <form onSubmit={props.formSubmissionHandler}>
         <input
-          type='text'
+          type="text"
           name="name"
           placeholder="Beer Name" />
         <input

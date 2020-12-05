@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import ReusableKegForm from "./ReusableKegForm";
 
 function NewKegForm(props) {
+  
   function handleNewKegFormSubmission(event){
     event.preventDefault();
     props.onNewKegCreation({name: event.target.name.value, brand: event.target.brand.value, price: event.target.price.value, abv: event.target.abv.value, pintsLeft: event.target.pintsLeft.value, id: v4()});

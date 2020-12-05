@@ -8,7 +8,8 @@ export default (state = {}, action) => {
           brand: brand,
           price: price,
           abv : abv,
-          pintsLeft: pintsLeft
+          pintsLeft: pintsLeft,
+          id: id
         }
       });
       case 'DELETE_KEG' :

@@ -24,8 +24,8 @@ class DraftControl extends React.Component {
 
 
     };
-    this.handleClick = this.handleClick.bind(this);
-    this.handleSellingPint = this.handleSellingPint.bind(this);
+    // this.handleClick = this.handleClick.bind(this);
+    // this.handleSellingPint = this.handleSellingPint.bind(this);
 
 
   }
@@ -42,10 +42,12 @@ class DraftControl extends React.Component {
       const action = {
         type: 'TOGGLE_FORM'
       }
+      console.log(this.props.kegFormVisibleOnPage);
       dispatch(action);
-      // this.setState(prevState => ({
-      //   kegFormVisibleOnPage: !prevState.kegFormVisibleOnPage,
-      // }));
+      console.log(this.props.kegFormVisibleOnPage);
+      //   this.setState(prevState => ({
+      //     kegFormVisibleOnPage: !prevState.kegFormVisibleOnPage,
+      //   }));
     }
   }
 
@@ -117,7 +119,7 @@ class DraftControl extends React.Component {
 
   handleChangingSelectedKeg = (id) => {
     const selectedKeg = this.props.fullDraftList[id];
-    this.setState({selectedKeg: selectedKeg});
+    this.setState({ selectedKeg: selectedKeg });
   }
   //   const selectedKeg = this.state.fullDraftList.filter(keg => keg.id === id)[0];
   //   this.setState({ selectedKeg: selectedKeg });
@@ -188,7 +190,7 @@ DraftControl.propTypes = {
 const mapStatetoProps = state => {
   return {
     fullDraftList: state.fullDraftList,
-    form: state.kegFormVisibleOnPage
+    kegFormVisibleOnPage: state.kegFormVisibleOnPage
   }
 }
 
