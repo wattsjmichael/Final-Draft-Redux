@@ -13,5 +13,17 @@ describe ('help queue actions', () => {
       type: 'TOGGLE_FORM'
     });
   });
-  
+
+  it ('addKeg should create ADD_KEG action', () => {
+    expect(actions.addKeg({name: "Generic Beer", brand: "Beer Co", abv: "5.5", price:"4.25", pintsLeft: 127, id: 1})).toEqual({
+      type: "ADD_KEG",
+      name: "Generic Beer", 
+      brand: "Beer Co", 
+      abv: "5.5", 
+      price:"4.25", 
+      pintsLeft: 127, 
+      id: 1
+    });
+  });
+
 });
