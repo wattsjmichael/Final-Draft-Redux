@@ -27,3 +27,8 @@ export const editKeg = (kegToEdit, selectedKeg) => {
     selectedKeg: selectedKeg
   }
 }
+
+export const selectedKeg = (keg) => ({
+  type: 'SELECT_KEG',
+  selectedKeg: keg
+}) 
