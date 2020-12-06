@@ -32,3 +32,7 @@ export const selectedKeg = (keg) => ({
   type: 'SELECT_KEG',
   selectedKeg: keg
 }) 
+
+export const notSelectedKeg = () => ({
+  type: 'NOT_SELECT_KEG'
+})

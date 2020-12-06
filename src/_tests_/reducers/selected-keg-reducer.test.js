@@ -23,6 +23,11 @@ describe("selectedKegReducer", () => {
     },
   };
 
+  test("Should return default state if NOT_SELECT_KEG type passed into SelectedKeg", () => {
+    expect(selectedKeg({}, { type: "NOT_SELECT_KEG" })).toEqual(null);
+  });
+
+
   test('Should return default state if no action type is recognized', () => {
     expect(selectedKeg(undefined, { type: null })).toEqual(null);
   });
@@ -41,7 +46,7 @@ describe("selectedKegReducer", () => {
       abv: "12.5",
       pintsLeft: 43,
       id: "2"
-  })
-  })
+  });
+  });
 
 });

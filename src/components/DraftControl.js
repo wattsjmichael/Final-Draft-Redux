@@ -151,11 +151,11 @@ class DraftControl extends React.Component {
     let buttonText = null;
 
     if (this.state.editing) {
-      currentlyVisibleState = <EditKegForm keg={this.state.selectedKeg} onEditKeg={this.handleEditingKegInDraftList} />
+      currentlyVisibleState = <EditKegForm keg={this.props.selectedKeg} onEditKeg={this.handleEditingKegInDraftList} />
       buttonText = "Return to the Draft List"
     }
-    else if (this.state.selectedKeg != null) {
-      currentlyVisibleState = <KegDetail keg={this.state.selectedKeg} onClickingDelete={this.handleDeletingKeg}
+    else if (this.props.selectedKeg != null) {
+      currentlyVisibleState = <KegDetail keg={this.props.selectedKeg} onClickingDelete={this.handleDeletingKeg}
         onClickingEdit={this.handleEditClick} onSellingPint={this.handleSellingPint} />
       buttonText = "Return to the Keg List"
 
@@ -179,13 +179,15 @@ class DraftControl extends React.Component {
 
 DraftControl.propTypes = {
   fullDraftList: PropTypes.object,
-  kegFormVisibleOnPage: PropTypes.bool
+  kegFormVisibleOnPage: PropTypes.bool,
+  selectedKeg: PropTypes.object
 };
 
 const mapStatetoProps = state => {
   return {
     fullDraftList: state.fullDraftList,
-    kegFormVisibleOnPage: state.kegFormVisibleOnPage
+    kegFormVisibleOnPage: state.kegFormVisibleOnPage,
+    selectedKeg: state.selectedKeg
   }
 }
 
