@@ -1,7 +1,9 @@
+import * as constants from "./../actions/actionTypes";
+
 export default (state = {}, action) => {
   const { name, brand, price, abv, pintsLeft, id} = action;
   switch (action.type) {
-    case 'ADD_KEG':
+    case constants.ADD_KEG:
       return Object.assign({}, state, {
         [id]: {
           name: name,
@@ -12,7 +14,7 @@ export default (state = {}, action) => {
           id: id
         }
       });
-      case 'DELETE_KEG' :
+      case constants.DELETE_KEG :
         const newState = { ...state };
         delete newState[id];
         return newState;
