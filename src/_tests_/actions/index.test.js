@@ -7,4 +7,11 @@ describe ('help queue actions', () => {
       id: 1
     });
   });
+
+  it ('kegFormVisible should create TOGGLE_FORM', () => {
+    expect(actions.toggleForm()).toEqual({
+      type: 'TOGGLE_FORM'
+    });
+  });
+  
 });
