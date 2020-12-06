@@ -1,5 +1,6 @@
 import kegFormVisibleReducer from '../../reducers/keg-form-visible-reducer';
 
+
 describe ("kegFormVisibleReducer", ()=> {
   
   test ('Should return default state if no action type is recognized', ()=> {
@@ -10,5 +11,5 @@ describe ("kegFormVisibleReducer", ()=> {
   test ('Should toggle form visiblity to true', () => {
     expect(kegFormVisibleReducer(false, { type: 'TOGGLE_FORM'})).toEqual(true);
   });
-  
+
 })
