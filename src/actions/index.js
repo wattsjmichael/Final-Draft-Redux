@@ -19,3 +19,11 @@ export const addKeg = (keg) => {
     id: id
   }
 }
+
+export const editKeg = (kegToEdit, selectedKeg) => {
+  return {
+    type: 'EDIT_KEG',
+    keg: kegToEdit,
+    selectedKeg: selectedKeg
+  }
+}
