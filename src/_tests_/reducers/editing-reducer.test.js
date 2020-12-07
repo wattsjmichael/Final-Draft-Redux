@@ -7,6 +7,6 @@ describe ("editingReducer", () => {
   });
 
   test('Should return editing state to true', () => {
-    expect(editingReducer(false, {type: editingReducer()})).toEqual(true);
+    expect(editingReducer(false, {type: 'EDIT_KEG'})).toEqual(true);
   })
 })

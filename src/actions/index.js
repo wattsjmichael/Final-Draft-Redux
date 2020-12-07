@@ -20,11 +20,16 @@ export const addKeg = (keg) => {
   }
 }
 
-export const editKeg = (kegToEdit, selectedKeg) => {
+export const editKeg = () => {
   return {
-    type: 'EDIT_KEG',
-    keg: kegToEdit,
-    selectedKeg: selectedKeg
+    type: 'EDIT_KEG'
+    
+  }
+}
+
+export const notEditKeg = () => {
+  return {
+    type: 'NOT_EDIT_KEG'
   }
 }
 
@@ -35,4 +40,9 @@ export const selectedKeg = (keg) => ({
 
 export const notSelectedKeg = () => ({
   type: 'NOT_SELECT_KEG'
+})
+
+export const sellPint = (id) => ({
+  type: 'SELL_PINT',
+  id: id
 })
