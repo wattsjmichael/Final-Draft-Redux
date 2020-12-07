@@ -1,6 +1,6 @@
 <br>
 <p>
-  <u><big>|| <b>Final Draft</b> ||</big></u>
+  <u><big>|| <b>Final Draft Redux</b> ||</big></u>
 </p>
 <p>
     <!-- Project Avatar/Logo -->
@@ -18,7 +18,7 @@
         </a> 
     </p>
     <p>
-  <small>Created November 29th, 2020</small>
+  <small>Created December 6th, 2020</small>
 </p>
 ---
 
@@ -27,17 +27,17 @@
 
 ### 📖 Description
 
-A React Webpage where you can add kegs, sell pints, update kegs, and delete them.
+A Redux Webpage where you can add kegs, sell pints, update kegs, and delete them.
 
 ### 🦠 Known Bugs
 
-- There is no styling at the moment. It will be added  at a later date. <a href=mailto:wattsjmichael@gmail.com>Michael Watts </a>
+- There is no styling at the moment. It will be added  at a later date. If you find any other bugs, shoot me an email! <a href=mailto:wattsjmichael@gmail.com>Michael Watts </a>
 
 ### 🛠 Built With
 
 - [Visual Studio Code](https://code.visualstudio.com/)
 - [React](https://reactjs.org/)
-
+- [Redux](https://redux.js.org)
 ---
 
 # 🏁 Getting Started
@@ -48,16 +48,16 @@ A React Webpage where you can add kegs, sell pints, update kegs, and delete them
  1. [Node.js](https://nodejs.org/en/download/) Pick the right one for your operating system. 
 
  2. Follow the installation steps. You got this! 
+
 #### Install React
 
 1. Test to make sure that you have Node.js installed by entering `node --version` and `npm --version` in your terminal. 
 
 2. Create the app by running `npx create-react-app final-draft`. Or Downloading/cloning from github. 
 
-#### Install React
+#### Install React/Redux
 
 1.  run `npm install redux@4.0.5 react-redux@7.1.3` in your terminal. 
-
 
 
 
@@ -76,26 +76,26 @@ To view or edit the code, you will need an code editor or text editor. The popul
 
 #### Cloning
 
-1. Navigate to the [Final Draft Here](https://github.com/wattsjmichael/FinalDraft).
+1. Navigate to the [Final Draft Here](https://github.com/wattsjmichael/Final-Draft-Redux).
 2. Click 'Clone or download' to reveal the HTTPS url ending with .git and the 'Download ZIP' option.
 3. Open up your system Terminal or GitBash, navigate to your desktop with the command: `cd Desktop`, or whichever location suits you best.
-4. Clone the repository to your desktop: `$ git clone https://github.com/wattsjmichael/FinalDraft.git`
-5. Run the command `cd FinalDraft` to enter into the project directory.
+4. Clone the repository to your desktop: `$ git clone https://github.com/wattsjmichael/Final-Draft-Redux.git`
+5. Run the command `cd FinalDraftRedux` to enter into the project directory.
 6. View or Edit:
    - Code Editor - Run the command `atom .` or `code .` to open the project in Atom or VisualStudio Code respectively for review and editing.
    - Text Editor - Open by double clicking on any of the files to open in a text editor.
 
    #### Download
 
-1. Navigate to the [Final Draft Here](https://github.com/wattsjmichael/FinalDraft).
+1. Navigate to the [Final Draft Here](https://github.com/wattsjmichael/Final-Draft-Redux).
 2. Click 'Clone or download' to reveal the HTTPS url ending with .git and the 'Download ZIP' option.
 3. Click 'Download ZIP' and unextract.
 4. Open by double clicking on any of the files to open in a text editor.
 
 #### AppSettings
-
-1. Run "NPM Run Start" in your terminal. Make sure you are in the project's directory. 
-2. Open your web browser to the local host that it suggests. ie. 3000
+1. Run "NPM Install" in your terminal. 
+2. Run "NPM Run Start" in your terminal. Make sure you are in the project's directory. 
+3. Open your web browser to the local host that it suggests. ie. 3000
 
 
 

@@ -9,8 +9,6 @@ const rootReducer = combineReducers({
   fullDraftList : draftListReducer,
   editing: editingReducer,
   selectedKeg : selectedKegReducer
-
-
 });
 
 export default rootReducer;

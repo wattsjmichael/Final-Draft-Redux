@@ -9,28 +9,6 @@ import * as actions from "./../actions";
 
 class DraftControl extends React.Component {
 
-  constructor(props) {
-    super(props);
-    console.log(props);
-    // this.state = {
-    // kegFormVisibleOnPage: false,
-    // fullDraftList: [],
-    // selectedKeg: null,
-    // editing: false,
-
-
-
-
-
-
-
-    // };
-    // this.handleClick = this.handleClick.bind(this);
-    // this.handleSellingPint = this.handleSellingPint.bind(this);
-
-
-  }
-
   handleClick = () => {
     const { dispatch } = this.props;
     if (this.props.selectedKeg != null) {
@@ -38,21 +16,11 @@ class DraftControl extends React.Component {
       dispatch(action)
       const action2 = actions.notSelectedKeg();
       dispatch(action2)
-      // if (this.state.selectedKeg != null) {
-      //   this.setState({
-      //     // kegFormVisibleOnPage: false,
-      //     selectedKeg: null,
-      //     editing: false
-      //   });
+      
     } else {
       const { dispatch } = this.props;
       const action = actions.toggleForm();
-      // console.log(this.props.kegFormVisibleOnPage);
       dispatch(action);
-      // console.log(this.props.kegFormVisibleOnPage);
-      //   this.setState(prevState => ({
-      //     kegFormVisibleOnPage: !prevState.kegFormVisibleOnPage,
-      //   }));
     }
   }
 
@@ -60,116 +28,49 @@ class DraftControl extends React.Component {
     const { dispatch } = this.props;
     const action = actions.sellPint(id);
     dispatch(action);
-
-    //   const clonedArray = [...this.props.fullDraftList]
-    //   console.log(clonedArray);
-    //   for (let i = 0; i < this.props.fullDraftList.length; i++) {
-    //     if (clonedArray[i].id === id && clonedArray[i].pintsLeft > 0) {
-    //       clonedArray[i].pintsLeft -= 1
-    //     } else if (clonedArray[i].pintsLeft <= 0) {
-    //       return alert("Change the Keg! Dont forget to delete it!");
-    //     }
-    //   }
-
-
-    //   this.setState({
-    //     fullDraftList: clonedArray
-    //   });
   }
 
 
   handleEditingKegInDraftList = (kegToEdit) => {
     const { dispatch } = this.props;
     const action = actions.addKeg(kegToEdit);
-    // const { id, name, brand, abv, price, pintsLeft } = kegToEdit;
-    // const action = {
-    //   type: 'ADD_KEG',
-    //   id: id,
-    //   name: name,
-    //   brand: brand,
-    //   abv: abv,
-    //   price: price,
-    //   pintsLeft: pintsLeft,
-    // }
     dispatch(action);
     const action2 = actions.notEditKeg();
     dispatch(action2);
     const action3 = actions.notSelectedKeg();
     dispatch(action3);
-    // this.setState({
-    //   editing: false,
-    //   selectedKeg: null,
-    // });
   }
-  //   const editedFullDraftList = this.state.fullDraftList
-  //   .filter(keg => keg.id !== this.state.selectedKeg.id)
-  //   .concat(kegToEdit);
-  //   this.setState({
-  //     fullDraftList: editedFullDraftList,
-  //     editing: false,
-  //     selectedKeg: null
-  //   })
-  // }
 
   handleEditClick = () => {
     const { dispatch } = this.props;
     const action = actions.editKeg();
     dispatch(action);
-
-    // this.setState({ editing: true });
   }
 
   handleDeletingKeg = (id) => {
     const { dispatch } = this.props;
     const action = actions.deleteKeg(id);
-    // const action = {
-    //   type: 'DELETE_KEG',
-    //   id: id
-    // }
     dispatch(action);
     const action2 = actions.notSelectedKeg();
     dispatch(action2);
-    // this.setState({ selectedKeg: null });
   }
-
-  //   const newFullDraftList = this.state.fullDraftList.filter(keg => keg.id !== id);
-  //   this.setState({
-  //     fullDraftList : newFullDraftList,
-  //     selectedKeg: null
-  //   });
-  // }
 
   handleChangingSelectedKeg = (id) => {
     const { dispatch } = this.props;
     const keg = this.props.fullDraftList[id];
     const action = actions.selectedKeg(keg);
     dispatch(action);
-    // const selectedKeg = this.props.fullDraftList[id];
-    // this.setState({ selectedKeg: selectedKeg });
   }
-  //   const selectedKeg = this.state.fullDraftList.filter(keg => keg.id === id)[0];
-  //   this.setState({ selectedKeg: selectedKeg });
-  // }
+  
 
   handleAddNewKegToDraftList = (newKeg) => {
     const { dispatch } = this.props;
-    // const { id, name, brand, abv, price, pintsLeft } = newKeg;
-    // 
     const action = actions.addKeg(newKeg);
     dispatch(action);
     const action2 = actions.toggleForm();
-    // const action2 = {
-    //   type: 'TOGGLE_FORM'
-    // }
     dispatch(action2)
-    // this.setState({ kegFormVisibleOnPage: false });
   }
 
-  //   const newFullDraftList = this.state.fullDraftList.concat(newKeg);
-  //   this.setState({
-  //     fullDraftList: newFullDraftList,
-  //     kegFormVisibleOnPage: false});
-  // }
 
   render() {
     let currentlyVisibleState = null;
@@ -189,7 +90,6 @@ class DraftControl extends React.Component {
       currentlyVisibleState = <NewKegForm onNewKegCreation={this.handleAddNewKegToDraftList} />
       buttonText = "Return to the Keg List";
     } else {
-      // currentlyVisibleState = <DraftList draftList={this.state.fullDraftList} onKegSelection={this.handleChangingSelectedKeg} />
       currentlyVisibleState = <DraftList draftList={this.props.fullDraftList} onKegSelection={this.handleChangingSelectedKeg} />
       buttonText = "Add a Keg";
     }

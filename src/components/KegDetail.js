@@ -10,7 +10,7 @@ function KegDetail(props){
     <h2>{keg.name} Made By {keg.brand}</h2>
     <p>abv {keg.abv}</p>
     <h3>price {keg.price}</h3>
-    <p>{keg.pintsLeft} total pints left</p> {/* Make this a percentage */}
+    <p>{keg.pintsLeft} total pints left</p>
     <hr/>
     <button onClick={ props.onClickingEdit }>Update Keg</button>
     <button onClick={()=> onClickingDelete(keg.id) }>Delete Keg</button>
